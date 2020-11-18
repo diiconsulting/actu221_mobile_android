@@ -1,0 +1,6 @@
+package com.example.actu221_mobile
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
