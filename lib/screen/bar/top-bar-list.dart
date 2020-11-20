@@ -19,11 +19,51 @@ class _TopBarListState extends State<TopBarList> {
   void initState() { 
     super.initState();
     _controller.addListener(() {
-      if ( 0 < _controller.position.pixels && _controller.position.pixels < size.width * .3) {
+        if (_controller.position.pixels < (size.width * .3) * 0) {
         homeScreenState.setState(() {
-            homeScreenState.ala_une = false;
+            homeScreenState.ala_une = true;
+            homeScreenState.politique = false ;
+            homeScreenState.ecomique = false;
+            homeScreenState.societe = false ;
+            homeScreenState.sport = false ;
         }); 
       } 
+      if (_controller.position.pixels > (size.width * .3) * 0 && _controller.position.pixels < (size.width * .3) * 1) {
+        homeScreenState.setState(() {
+            homeScreenState.ala_une = false;
+            homeScreenState.politique = true ;
+            homeScreenState.ecomique = false;
+            homeScreenState.societe = false ;
+            homeScreenState.sport = false ;
+        }); 
+      } 
+      if (_controller.position.pixels > (size.width * .3 ) * 1 && _controller.position.pixels < (size.width * .3) * 2) {
+         homeScreenState.setState(() {
+            homeScreenState.ala_une = false;
+            homeScreenState.politique = false ;
+            homeScreenState.ecomique = true;
+            homeScreenState.societe = false ;
+            homeScreenState.sport = false ;
+        }); 
+      } 
+      if (_controller.position.pixels > (size.width * .3 ) * 2 && _controller.position.pixels < (size.width * .3) * 3) {
+         homeScreenState.setState(() {
+            homeScreenState.ala_une = false;
+            homeScreenState.politique = false ;
+            homeScreenState.ecomique = false;
+            homeScreenState.societe = true ;
+            homeScreenState.sport = false ;
+        }); 
+      }
+       if (_controller.position.pixels > (size.width * .3 ) * 3 && _controller.position.pixels < (size.width * .3) * 4) {
+         homeScreenState.setState(() {
+            homeScreenState.ala_une = false;
+            homeScreenState.politique = false ;
+            homeScreenState.ecomique = false;
+            homeScreenState.societe = false ;
+            homeScreenState.sport = true ;
+        }); 
+      }
     });
   }
 

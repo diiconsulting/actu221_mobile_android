@@ -21,6 +21,8 @@ class Article {
 
   User user;
 
+  bool isReadAfter;
+
   List<String> allFichier = [];
 
   Article(
@@ -32,6 +34,7 @@ class Article {
       @required this.tag,
       @required this.urlPhoto,
       this.allFichier,
+      this.isReadAfter = false,
       this.user});
 
   static fromJson(Map<dynamic, dynamic> liste) {

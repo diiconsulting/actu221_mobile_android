@@ -1,11 +1,12 @@
+import 'package:actu221_mobile/main.dart';
 import 'package:actu221_mobile/utils/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:actu221_mobile/screen/home.dart';
 
-class TopBar extends StatelessWidget {
+class TopBarDetailsArticle extends StatelessWidget {
   final GlobalKey<ScaffoldState> scafoldKey;
 
-  const TopBar({Key key, this.scafoldKey}) : super(key: key);
+  const TopBarDetailsArticle({Key key, this.scafoldKey}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -19,16 +20,18 @@ class TopBar extends StatelessWidget {
                 width: size.width * .15,
                 // color: colorPrimaire,
                 child: IconButton(
-                  onPressed: () => scafoldKey.currentState.openDrawer(),
+                  onPressed: () => appState.setState(() {
+                    appState.screenApp = 1;
+                  }),
                   icon: Icon(
-                    Icons.menu,
+                    Icons.arrow_back_ios,
                     color: black,
                   ),
                 ),
               ),
               InkWell(
-                onTap: () => homeScreenState.setState(() {
-                  homeScreenState.initValue();
+                onTap: () => appState.setState(() {
+                  appState.screenApp = 1;
                 }),
                 child: Container(
                   width: size.width * .4,
@@ -44,14 +47,9 @@ class TopBar extends StatelessWidget {
                 width: size.width * .15,
                 // color: colorPrimaire,
                 child: IconButton(
-                  onPressed: () {
-                    homeScreenState.setState(() {
-                      homeScreenState.listeArticlePlusTardShow = true;
-                      homeScreenState.topBar = true;
-                    });
-                  },
+                  onPressed: null,
                   icon: Icon(
-                    Icons.bookmark_border,
+                    Icons.ios_share,
                     color: black,
                   ),
                 ),
@@ -59,24 +57,6 @@ class TopBar extends StatelessWidget {
             ],
           ),
         ),
-        Positioned(
-          right: 5,
-          top: 2,
-          child: Container(
-            height: 25,
-            width: 25,
-            child: Center(
-              child: Text(
-                '${homeScreenState.listeArticlePlusTard.length}',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 10, fontWeight: FontWeight.bold, color: white),
-              ),
-            ),
-            decoration: BoxDecoration(
-                color: colorPrimaire, borderRadius: BorderRadius.circular(30)),
-          ),
-        )
       ],
     );
   }

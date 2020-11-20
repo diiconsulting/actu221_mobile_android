@@ -72,7 +72,7 @@ class CardMenuHambouger extends StatelessWidget {
         Divider(),
         TextIconMenuHambouger(
           titre: 'Nous écrire',
-          icon: Icons.messenger,
+          icon: Icons.email_rounded,
         ),
         TextIconMenuHambouger(
           titre: 'Parametres',

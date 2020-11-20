@@ -1,7 +1,6 @@
 import 'package:actu221_mobile/model/article.dart';
-import 'package:actu221_mobile/screen/bar/top-bar-list.dart';
 import 'package:actu221_mobile/screen/home.dart';
-import 'package:actu221_mobile/widget/card-new.dart';
+import 'package:actu221_mobile/utils/get-all-piese-of-article.dart';
 import 'package:flutter/material.dart';
 
 class AcceuilPage extends StatefulWidget {
@@ -40,30 +39,9 @@ class _AcceuilPageState extends State<AcceuilPage> {
     return ListView(
       physics: BouncingScrollPhysics(),
       controller: _controller,
-      children: getAllPieceOfArticle(widget.articles),
+      children: getAllPieceOfArticle(articles:widget.articles , size: size ),
     );
   }
 
-  List<Widget> getAllPieceOfArticle(List<Article> l) {
-    List<Widget> liste = [];
-    int i = 0;
-    for (var item in l) {
-      i++;
-      if (i == 2) {
-        liste.add(Container(
-          height: size.height *.05,
-          width: size.width,
-          child: TopBarList()));
-      } else {
-        liste.add(CardNew(
-          article: item,
-        ));
-      }
-    }
-    liste.add(SizedBox(
-      height: 150,
-    ));
-
-    return liste;
-  }
+  
 }

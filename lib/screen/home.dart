@@ -1,5 +1,6 @@
 import 'package:actu221_mobile/model/article.dart';
 import 'package:actu221_mobile/pages/accueil.dart';
+import 'package:actu221_mobile/pages/show-list-article-after.dart';
 import 'package:actu221_mobile/screen/bar/top-bar-list.dart';
 import 'package:actu221_mobile/utils/constant.dart';
 import 'package:actu221_mobile/widget/card-flash-info.dart';
@@ -24,18 +25,25 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   bool topBar = false;
 
+  bool isTopBarDetails = false;
+
   bool ala_une = true;
-  
-  bool politique = false ;
+
+  bool politique = false;
 
   bool ecomique = false;
 
   bool societe = false;
-  
+
   bool sport = false;
-  
+
+  List<Article> listeArticlePlusTard = [];
+
+  bool listeArticlePlusTardShow = false;
+
   @override
   Widget build(BuildContext context) {
     print('Liste Article => ${widget.articles.length}');
@@ -60,13 +68,15 @@ class _HomeScreenState extends State<HomeScreen> {
             color: Colors.grey[200],
           ),
           Positioned(
-            top: size.height * .073,
+            top: !listeArticlePlusTardShow ? size.height * .073 : size.height * .1,
             child: Container(
               height: size.height,
               width: size.width,
-              child: AcceuilPage(
-                articles: widget.articles,
-              ),
+              child: !listeArticlePlusTardShow
+                  ? AcceuilPage(
+                      articles: widget.articles,
+                    )
+                  : ShowListArtilceAfter(),
             ),
           ),
           Positioned(
@@ -89,29 +99,50 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: TopBarList()),
                 )
               : Container(),
-          Positioned(
-            bottom: 0,
-            child: Container(
-              height: size.height * .065,
-              width: size.width,
-              // color: black.withOpacity(.2),
-              child: CarouselSlider(
-                  items: widget.articles
-                      .map((e) => CardFlashInfo(
-                            article: e,
-                          ))
-                      .toList(),
-                  options: CarouselOptions(
-                      autoPlay: true,
-                      viewportFraction: 1,
-                      // aspectRatio: 1.0,
-                      enlargeCenterPage: true,
-                      autoPlayAnimationDuration: Duration(milliseconds: 800),
-                      autoPlayInterval: Duration(milliseconds: 8000))),
-            ),
-          ),
+          !homeScreenState.listeArticlePlusTardShow
+              ? Positioned(
+                  bottom: 0,
+                  child: Container(
+                    height: size.height * .065,
+                    width: size.width,
+                    // color: black.withOpacity(.2),
+                    child: CarouselSlider(
+                        items: widget.articles
+                            .map((e) => CardFlashInfo(
+                                  article: e,
+                                ))
+                            .toList(),
+                        options: CarouselOptions(
+                            autoPlay: true,
+                            viewportFraction: 1,
+                            // aspectRatio: 1.0,
+                            enlargeCenterPage: true,
+                            autoPlayAnimationDuration:
+                                Duration(milliseconds: 800),
+                            autoPlayInterval: Duration(milliseconds: 8000))),
+                  ),
+                )
+              : Container(),
         ],
       ),
     );
+  }
+
+  initValue() {
+    setState(() {
+      topBar = false;
+
+      ala_une = true;
+
+      politique = false;
+
+      ecomique = false;
+
+      societe = false;
+
+      sport = false;
+
+      listeArticlePlusTardShow = false;
+    });
   }
 }

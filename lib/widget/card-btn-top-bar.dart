@@ -21,23 +21,23 @@ class BtnTopBar extends StatelessWidget {
         ),
         Positioned(
           top: isActive ?  10.0 : 14.0,
-          left: size.width * .05,
+          // left: size.width * .007,
           child: Text(
             titre,
             textAlign: TextAlign.center,
             style: TextStyle(
-                fontSize: isActive ? 18 : 14, fontWeight: FontWeight.bold, color: isActive ? colorPrimaire : black),
+                fontSize: isActive ? 16 : 14, fontWeight: FontWeight.bold, color: isActive ? colorPrimaire : black),
           ),
         ),
-        Positioned(
-          // top: size.height * .025,
-          left: size.width * .35,
-          child: Container(
-            height: size.height * .05,
-            width: 2,
-            color: colorPrimaire,
-          ),
-        )
+        // Positioned(
+        //   // top: size.height * .025,
+        //   left: size.width * .35,
+        //   child: Container(
+        //     height: size.height * .05,
+        //     width: 2,
+        //     color: colorPrimaire,
+        //   ),
+        // )
       ],
     );
   }
